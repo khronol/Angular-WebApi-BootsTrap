@@ -1,0 +1,9 @@
+﻿SELECT * FROM dbo.Employee -- Выбор всех сотрудников
+
+SELECT * FROM dbo.Employee
+WHERE EmployeeSalary > 10000 -- Выбор всех у кого зп больше 10000
+
+
+DELETE FROM dbo.Employee WHERE DATEDIFF (year,EmployeeDateOfBirth,GETDATE()) > 70 -- Удалить всех сотрудников старше 70
+
+UPDATE dbo.Employee SET EmployeeSalary = 15000 WHERE EmployeeSalary < 15000 -- ЗП 15000 тем у кого меньше

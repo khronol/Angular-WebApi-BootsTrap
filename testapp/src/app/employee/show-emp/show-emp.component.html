@@ -1,0 +1,88 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary m-2" 
+data-bs-toggle="modal" data-bs-target="#exampleModal"
+(click)="addClick()"
+data-backdrop="static" data-keyboard="false">
+    Add
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{ModalTitle}}</h1>
+          <button type="button" class="btn-close" 
+          data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeClick()"></button>
+        </div>
+        <div class="modal-body">
+          <app-add-edit-emp [emp]="emp" *ngIf="ActivateAddEditEmpComp"></app-add-edit-emp>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">
+            <div class="d-flex flex-row">
+                <input [(ngModel)]="EmployeeIdFilter" class="form-control"
+                (keyup)="FilterFn()" placeholder="filter">
+            </div>
+            Id</th>
+        <th scope="col">
+            <div class="d-flex flex-row">
+                <input [(ngModel)]="EmployeeNameFilter" class="form-control"
+                (keyup)="FilterFn()" placeholder="filter">
+            </div>
+            ФИО</th>
+        <th scope="col">
+            <div class="d-flex flex-row">
+                <input type="date" [(ngModel)]="EmployeeDateOfBirthFilter" class="form-control"
+                (keyup)="FilterFn()" placeholder="filter">
+            </div>
+            Дата рождения</th>
+        <th scope="col">
+            <div class="d-flex flex-row">
+                <input type="date" [(ngModel)]="EmployeeFirstWorkDayFilter" class="form-control"
+                (keyup)="FilterFn()" placeholder="filter">
+            </div>
+            Дата трудоустройства</th>
+        <th scope="col">
+            <div class="d-flex flex-row">
+                <input [(ngModel)]="EmployeeSalaryFilter" class="form-control"
+                (keyup)="FilterFn()" placeholder="filter">
+            </div>
+            Зарплата</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dataItem of EmployeeList">
+        <td>{{dataItem.EmployeeID}}</td>
+        <td>{{dataItem.EmployeeName}}</td>
+        <td>{{dataItem.EmployeeDateOfBirth}}</td>
+        <td>{{dataItem.EmployeeFirstWorkDay}}</td>
+        <td>{{dataItem.EmployeeSalary}}</td>
+        <td>
+            <button type="button" class="btn btn-light m-1"
+            data-bs-toggle="modal" data-bs-target="#exampleModal"
+(click)="editClick(dataItem)"
+data-backdrop="static" data-keyboard="false">
+                Edit
+            </button>
+            <button type="button" class="btn btn-light m-1"
+            data-bs-toggle="modal" data-bs-target="#exampleModal"
+(click)="deleteClick(dataItem)"
+data-backdrop="static" data-keyboard="false">
+                Delete
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
